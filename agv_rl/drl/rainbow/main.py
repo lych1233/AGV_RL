@@ -7,7 +7,7 @@ import tqdm
 
 from .agent import RainbowAgent
 from .prioritized_sampling import SamplingPool
-from .config import get_args
+from agv_rl.configs.rainbow import get_args
 
 
 def test(args, agent, env):

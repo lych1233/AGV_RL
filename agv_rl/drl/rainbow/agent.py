@@ -5,7 +5,7 @@ import numpy as np
 import torch
 from torch.nn.utils import clip_grad_norm_
 
-from .nn_blocks import QNet
+from agv_rl.drl.rainbow.nn_blocks import QNet
 
 
 class RainbowAgent(object):

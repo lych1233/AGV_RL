@@ -10,7 +10,7 @@ class ClassicControl(BaseEnv):
     def __init__(self, env, seed):
         super(ClassicControl, self).__init__()
         self.env = gym.make(env)
-        self.env.seed(seed)
+        self.env.reset(seed=seed)
         action_space = self.env.action_space
         if isinstance(action_space, gym.spaces.Discrete):
             self.continuous_action_space = False
@@ -24,7 +24,7 @@ class ClassicControl(BaseEnv):
         self.n_obs = obs_space.shape
 
     def reset(self):
-        obs = self.env.reset()
+        obs, info = self.env.reset()
         return obs
     
     def step(self, action):
@@ -32,8 +32,8 @@ class ClassicControl(BaseEnv):
             action = action.item()
         else:
             action = self.action_mu + action * self.action_scale
-        obs, reward, done, info = self.env.step(action)
-        return obs, reward, done, info
+        obs, reward, done, truncated, info = self.env.step(action)
+        return obs, reward, done or truncated, info
     
     def render(self):
         return self.env.render()

@@ -4,8 +4,8 @@ import torch
 import numpy as np
 
 import buffers
-from agv_rl.drl.rainbow.main import run
 import envs
+from agv_rl.drl.rainbow.main import run as rainbow
 
 
 def get_args():
@@ -62,18 +62,18 @@ test_env.eval()
 buffer = buffers.make_buffer(args, env, device)
 
 if args.algo == "dqn":
-    drl.DQN(env, test_env, device, buffer)
+    raise NotImplementedError
 elif args.algo == "a2c":
-    drl.A2C(env, test_env, device, buffer)
+    raise NotImplementedError
 elif args.algo == "ddpg":
-    drl.DDPG(env, test_env, device, buffer)
+    raise NotImplementedError
 elif args.algo == "rainbow":
-    run(env, test_env, device, buffer)
+    rainbow(env, test_env, device, buffer)
 elif args.algo == "ppo":
-    drl.PPO(env, test_env, device, buffer)
+    raise NotImplementedError
 elif args.algo == "td3":
-    drl.TD3(env, test_env, device, buffer)
+    raise NotImplementedError
 elif args.algo == "sac":
-    drl.SAC(env, test_env, device, buffer)
+    raise NotImplementedError
 else:
     raise ValueError("algorithm not defined")
